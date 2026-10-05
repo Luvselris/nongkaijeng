@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard ♡ SeaSea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #fff0f5;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --pink-border: #fcd7e5;
+      --pink-accent: #f48fb1;
+      --pink-strong: #ec407a;
+      --text-main: #4a3b3e;
+      --text-muted: #8d7b82;
+      --glow: 0 10px 30px rgba(236, 64, 122, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', 'Mitr', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ffeef3 0%, var(--bg-color) 60%, #fae6ed 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    #loginView {
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 36px 24px;
+      box-shadow: var(--glow);
+      border: 1.5px solid var(--pink-border);
+      text-align: center;
+    }
+
+    .input-field, .textarea-field {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--pink-border);
+      border-radius: 16px;
+      font-size: 13.5px;
+      background: #fff;
+      color: var(--text-main);
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .btn-pink {
+      width: 100%;
+      background: linear-gradient(135deg, #f8a5c2, var(--pink-strong));
+      color: #fff;
+      border: none;
+      padding: 13px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(236, 64, 122, 0.3);
+    }
+
+    #dashboardView { display: none; }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .panel-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 20px 16px;
+      box-shadow: var(--glow);
+      border: 1.5px solid var(--pink-border);
+      margin-bottom: 18px;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--pink-strong);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hl-admin-card {
+      background: #fff;
+      border: 1px solid var(--pink-border);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .story-slot {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      border: 1px dashed var(--pink-border);
+      overflow: hidden;
+      background: #fff7fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .del-btn {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: rgba(236, 64, 122, 0.9);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- หน้า Login -->
+    <div id="loginView">
+      <div class="login-card">
+        <h2 style="color:var(--pink-strong); margin-bottom:20px;">Admin Login ♡</h2>
+        <form onsubmit="handleLogin(event)">
+          <input type="email" id="emailInput" class="input-field" placeholder="seasea1.2554@gmail.com" required>
+          <input type="password" id="passwordInput" class="input-field" placeholder="Password" required>
+          <button type="submit" class="btn-pink">เข้าสู่ระบบ ✨</button>
+          <p id="loginError" style="color:#e91e63; font-size:12px; margin-top:10px; display:none;">อีเมลหรือรหัสผ่านไม่ถูกต้องค่ะ</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- หน้า Dashboard หลังบ้าน -->
+    <div id="dashboardView">
+      <div class="top-bar">
+        <div style="font-weight:700; color:var(--pink-strong); font-size:18px;">Dashboard ♡ SeaSea</div>
+        <button onclick="handleLogout()" style="background:#fff; border:1px solid var(--pink-border); padding:6px 14px; border-radius:14px; color:var(--pink-strong); font-size:12px; cursor:pointer;">ออกระบบ</button>
+      </div>
+
+      <!-- ข้อมูลร้าน -->
+      <div class="panel-card">
+        <div class="panel-title">🎀 ข้อมูลร้านค้า</div>
+        <input type="text" id="storeNameInput" class="input-field" placeholder="ชื่อร้าน">
+        <textarea id="storeBioInput" class="textarea-field" rows="3" placeholder="ข้อความแนะนำร้าน"></textarea>
+        
+        <div style="margin-bottom:10px;">
+          <label style="font-size:12px; color:var(--text-muted); font-weight:600;">รูปแบนเนอร์:</label>
+          <input type="file" accept="image/*" onchange="uploadDirect(event, 'bannerImg')">
+        </div>
+        <div style="margin-bottom:10px;">
+          <label style="font-size:12px; color:var(--text-muted); font-weight:600;">รูปโปรไฟล์:</label>
+          <input type="file" accept="image/*" onchange="uploadDirect(event, 'profileImg')">
+        </div>
+      </div>
+
+      <!-- ลิงก์ติดต่อ & เพลง -->
+      <div class="panel-card">
+        <div class="panel-title">🔗 ข้อมูลการติดต่อ & เพลง</div>
+        <input type="url" id="lineUrlInput" class="input-field" placeholder="ลิงก์ LINE Official">
+        <input type="url" id="igUrlInput" class="input-field" placeholder="ลิงก์ Instagram">
+        <input type="url" id="musicUrlInput" class="input-field" placeholder="ลิงก์ไฟล์เสียง (.mp3)">
+      </div>
+
+      <!-- รายละเอียดบริการ -->
+      <div class="panel-card">
+        <div class="panel-title">📝 รายละเอียดบริการ (Details)</div>
+        <textarea id="detailsInput" class="textarea-field" rows="4" placeholder="ข้อความรายละเอียดบริการ..."></textarea>
+      </div>
+
+      <!-- ไฮไลท์สตอรี่ -->
+      <div class="panel-card">
+        <div class="panel-title">✨ ไฮไลท์สตอรี่ (อัปเดตภาพคมชัด ไม่แตก)</div>
+        <div id="hlAdminList"></div>
+      </div>
+
+      <button type="button" class="btn-pink" id="saveBtn" style="font-size:15px; padding:14px; margin-bottom:20px;" onclick="saveAll()">
+        ☁️ บันทึกข้อมูลขึ้นระบบทันที ♡
+      </button>
+
+      <!-- รีวิวลูกค้า -->
+      <div class="panel-card">
+        <div class="panel-title">💬 จัดการรีวิวจากลูกค้า</div>
+        <div id="reviewsBox"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_EMAIL = "seasea1.2554@gmail.com";
+    const ADMIN_PASS = "jeng27128";
+
+    // ฐานข้อมูลแยกอิสระ
+    const firebaseConfig = {
+      apiKey: "AIzaSyCpAGDSy1NRgmLV_g7qJrCpwOhU9MrfQyY",
+      authDomain: "benefitie.firebaseapp.com",
+      projectId: "benefitie",
+      storageBucket: "benefitie.firebasestorage.app",
+      messagingSenderId: "270365672215",
+      appId: "1:270365672215:web:230d1491091e26ce83ed52"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const DB_COLLECTION = "seasea_site_data";
+    const DB_REVIEWS = "seasea_site_reviews";
+
+    let siteConfig = {
+      storeName: "SeaSea Shop ♡",
+      storeBio: "ยินดีต้อนรับสู่ร้านค้าของเราค่ะ ♡",
+      bannerImg: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=800&auto=format&fit=crop",
+      profileImg: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
+      lineUrl: "",
+      igUrl: "",
+      musicUrl: "",
+      details: "",
+      highlights: [
+        { title: "Story 1", cover: "", images: [] },
+        { title: "Story 2", cover: "", images: [] },
+        { title: "Story 3", cover: "", images: [] }
+      ]
+    };
+
+    window.onload = function() {
+      if (sessionStorage.getItem('seasea_auth') === 'true') {
+        showDashboard();
+      }
+    };
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const mail = document.getElementById('emailInput').value.trim();
+      const pass = document.getElementById('passwordInput').value.trim();
+      if (mail === ADMIN_EMAIL && pass === ADMIN_PASS) {
+        sessionStorage.setItem('seasea_auth', 'true');
+        showDashboard();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('seasea_auth');
+      location.reload();
+    }
+
+    async function showDashboard() {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('dashboardView').style.display = 'block';
+
+      try {
+        const doc = await db.collection(DB_COLLECTION).doc("main_config").get();
+        if (doc.exists) {
+          siteConfig = { ...siteConfig, ...doc.data() };
+        }
+      } catch (err) {}
+
+      renderFields();
+      listenReviews();
+    }
+
+    function renderFields() {
+      document.getElementById('storeNameInput').value = siteConfig.storeName || '';
+      document.getElementById('storeBioInput').value = siteConfig.storeBio || '';
+      document.getElementById('lineUrlInput').value = siteConfig.lineUrl || '';
+      document.getElementById('igUrlInput').value = siteConfig.igUrl || '';
+      document.getElementById('musicUrlInput').value = siteConfig.musicUrl || '';
+      document.getElementById('detailsInput').value = siteConfig.details || '';
+      renderHighlightsAdmin();
+    }
+
+    function renderHighlightsAdmin() {
+      const box = document.getElementById('hlAdminList');
+      box.innerHTML = '';
+      siteConfig.highlights.forEach((hl, idx) => {
+        const card = document.createElement('div');
+        card.className = 'hl-admin-card';
+
+        let imgsHtml = '';
+        if (hl.images) {
+          hl.images.forEach((img, imgIdx) => {
+            imgsHtml += `
+              <div class="story-slot">
+                <img src="${img}">
+                <button class="del-btn" onclick="removeStoryImg(${idx}, ${imgIdx})">✕</button>
+              </div>
+            `;
+          });
+        }
+
+        card.innerHTML = `
+          <div style="font-weight:700; color:var(--pink-strong); margin-bottom:8px;">ไฮไลท์ที่ ${idx + 1}</div>
+          <input type="text" class="input-field" value="${hl.title || ''}" placeholder="ชื่อไฮไลท์" onchange="siteConfig.highlights[${idx}].title = this.value">
+          <div style="font-size:12px; margin-bottom:6px;">
+            เปลี่ยนรูปปก: <input type="file" accept="image/*" onchange="uploadCover(event, ${idx})">
+          </div>
+          <div style="font-size:12px; margin-bottom:6px;">
+            เพิ่มรูปสตอรี่: <input type="file" accept="image/*" multiple onchange="uploadStoryImgs(event, ${idx})">
+          </div>
+          <div class="stories-grid">${imgsHtml}</div>
+        `;
+        box.appendChild(card);
+      });
+    }
+
+    // ตัวแปลงรูปความละเอียดสูง 1200px / 0.92 คุณภาพสูง คมชัด
+    function compressImg(file, maxWidth = 1200, quality = 0.92) {
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.width, h = img.height;
+            if (w > maxWidth) {
+              h = Math.round((h * maxWidth) / w);
+              w = maxWidth;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function uploadDirect(e, key) {
+      if (e.target.files && e.target.files[0]) {
+        siteConfig[key] = await compressImg(e.target.files[0], 1000, 0.9);
+      }
+    }
+
+    async function uploadCover(e, idx) {
+      if (e.target.files && e.target.files[0]) {
+        siteConfig.highlights[idx].cover = await compressImg(e.target.files[0], 400, 0.9);
+      }
+    }
+
+    async function uploadStoryImgs(e, idx) {
+      const files = Array.from(e.target.files);
+      if (!siteConfig.highlights[idx].images) siteConfig.highlights[idx].images = [];
+      for (const f of files) {
+        const b64 = await compressImg(f, 1200, 0.92);
+        siteConfig.highlights[idx].images.push(b64);
+      }
+      renderHighlightsAdmin();
+    }
+
+    function removeStoryImg(hlIdx, imgIdx) {
+      siteConfig.highlights[hlIdx].images.splice(imgIdx, 1);
+      renderHighlightsAdmin();
+    }
+
+    async function saveAll() {
+      const btn = document.getElementById('saveBtn');
+      btn.disabled = true;
+      btn.textContent = "กำลังบันทึกข้อมูล... ⏳";
+
+      siteConfig.storeName = document.getElementById('storeNameInput').value;
+      siteConfig.storeBio = document.getElementById('storeBioInput').value;
+      siteConfig.lineUrl = document.getElementById('lineUrlInput').value.trim();
+      siteConfig.igUrl = document.getElementById('igUrlInput').value.trim();
+      siteConfig.musicUrl = document.getElementById('musicUrlInput').value.trim();
+      siteConfig.details = document.getElementById('detailsInput').value;
+
+      try {
+        await db.collection(DB_COLLECTION).doc("main_config").set(siteConfig);
+        alert("✨ บันทึกข้อมูลขึ้นระบบสำเร็จเรียบร้อยค่ะ!");
+      } catch (err) {
+        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "☁️ บันทึกข้อมูลขึ้นระบบทันที ♡";
+      }
+    }
+
+    function listenReviews() {
+      db.collection(DB_REVIEWS).orderBy("createdAt", "desc").onSnapshot(snap => {
+        const box = document.getElementById('reviewsBox');
+        box.innerHTML = '';
+        if (snap.empty) {
+          box.innerHTML = '<p style="text-align:center; font-size:12px; color:var(--text-muted);">ยังไม่มีรีวิว</p>';
+          return;
+        }
+        snap.forEach(doc => {
+          const d = doc.data();
+          const div = document.createElement('div');
+          div.style = "background:#fff; border:1px solid var(--pink-border); border-radius:14px; padding:10px 12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;";
+          div.innerHTML = `
+            <div>
+              <div style="font-weight:700; font-size:13px;">${d.name} (${'★'.repeat(d.stars || 5)})</div>
+              <div style="font-size:12px; color:var(--text-muted);">${d.msg}</div>
+            </div>
+            <button onclick="deleteReview('${doc.id}')" style="background:#ffebee; border:none; color:#c2185b; padding:4px 8px; border-radius:8px; font-size:11px; cursor:pointer;">ลบ</button>
+          `;
+          box.appendChild(div);
+        });
+      });
+    }
+
+    async function deleteReview(id) {
+      if (confirm("ต้องการลบรีวิวนี้ใช่หรือไม่?")) {
+        await db.collection(DB_REVIEWS).doc(id).delete();
+      }
+    }
+  </script>
+</body>
+</html>
