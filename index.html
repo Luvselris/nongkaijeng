@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title id="pageTitle">My Store ♡</title>
+  <title id="pageTitle">liho ♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,16 +14,13 @@
 
   <style>
     :root {
-      --bg-pastel: #fff5f8;
-      --card-white: rgba(255, 255, 255, 0.96);
-      --pink-soft: #ffe8f0;
-      --pink-border: #fcd7e5;
-      --pink-accent: #f48fb1;
-      --pink-strong: #ec407a;
-      --text-dark: #4a3e42;
-      --text-muted: #8d7b82;
-      --pink-glow: rgba(244, 143, 177, 0.22);
-      --star-color: #ffb74d;
+      --bg-gradient: radial-gradient(circle at top, #ffeef2 0%, #fff0f3 50%, #ffe4ec 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --deep-pink: #fb6f92;
+      --border-pink: #ffc2d1;
+      --text-main: #4a3e3d;
+      --text-muted: #8e7c7e;
+      --glow-shadow: 0 10px 30px rgba(251, 111, 146, 0.16);
     }
 
     * {
@@ -35,8 +32,8 @@
     }
 
     body {
-      background: radial-gradient(circle at top, #ffffff 0%, var(--bg-pastel) 60%, #fae6ed 100%);
-      color: var(--text-dark);
+      background: var(--bg-gradient);
+      color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
@@ -54,9 +51,9 @@
       position: absolute;
       bottom: -60px;
       font-size: 22px;
-      animation: floatUp 12s linear infinite;
+      animation: floatUp 11s linear infinite;
       opacity: 0.75;
-      filter: drop-shadow(0 2px 6px var(--pink-glow));
+      filter: drop-shadow(0 2px 8px rgba(251, 111, 146, 0.3));
     }
 
     @keyframes floatUp {
@@ -67,212 +64,201 @@
     }
 
     .container {
-      max-width: 440px;
+      max-width: 480px;
       margin: 0 auto;
-      padding: 16px 14px 80px;
+      padding: 24px 16px 80px;
       position: relative;
       z-index: 2;
     }
 
-    /* Top Nav Tabs */
-    .top-nav {
-      background: var(--card-white);
-      border: 1.5px solid var(--pink-border);
-      border-radius: 26px;
-      padding: 6px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 18px var(--pink-glow);
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 4px;
-      flex: 1;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 8px 0;
-      border: none;
-      background: none;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text-muted);
-      border-radius: 20px;
-      cursor: pointer;
+    /* 1. Header Card */
+    .header-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 16px 16px 26px;
+      box-shadow: var(--glow-shadow);
+      border: 1.5px solid var(--border-pink);
       text-align: center;
-      transition: all 0.2s;
-    }
-
-    .tab-btn.active {
-      background: #ffffff;
-      color: var(--pink-strong);
-      font-weight: 600;
-      box-shadow: 0 2px 10px rgba(236, 64, 122, 0.18);
-    }
-
-    .music-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 1.5px solid var(--pink-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      margin-left: 6px;
-    }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* Home Layout */
-    .banner-float-box {
-      width: 100%;
-      height: 150px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1.5px solid var(--pink-border);
-      background: #ffffff;
-      box-shadow: 0 8px 24px var(--pink-glow);
       margin-bottom: 20px;
     }
 
-    .banner-float-box img {
+    .banner-img {
       width: 100%;
-      height: 100%;
+      height: 145px;
+      border-radius: 24px;
       object-fit: cover;
+      margin-bottom: -50px;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 14px rgba(251, 111, 146, 0.15);
     }
 
-    .profile-center-wrap {
-      text-align: center;
-      margin-bottom: 8px;
-    }
-
-    .profile-circle-wrap {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto;
-      border-radius: 50%;
-      padding: 3px;
-      background: #ffffff;
-      border: 2px solid #ffccd9;
-      box-shadow: 0 0 0 4px #ffeef3, 0 8px 24px var(--pink-glow);
-    }
-
-    .profile-circle-wrap img {
-      width: 100%;
-      height: 100%;
+    .profile-img {
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 6px 18px rgba(251, 111, 146, 0.25);
+      position: relative;
+      z-index: 2;
+      background: #fff;
     }
 
-    .store-title {
-      font-size: 20px;
+    .store-name {
+      font-size: 24px;
       font-weight: 700;
-      color: var(--text-dark);
-      margin-top: 10px;
-      text-align: center;
+      color: var(--deep-pink);
+      margin-top: 12px;
+      letter-spacing: 0.5px;
     }
 
-    .bio-dashed-box {
-      background: #ffffff;
-      border: 1.5px dashed var(--pink-border);
-      border-radius: 22px;
-      padding: 16px 14px;
-      margin-top: 14px;
-      text-align: center;
-      line-height: 1.7;
-      font-size: 13px;
+    .store-bio {
+      font-size: 13.5px;
       color: var(--text-muted);
+      margin-top: 8px;
+      line-height: 1.65;
       white-space: pre-line;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+      padding: 0 8px;
     }
 
-    .review-header-label {
-      font-size: 14.5px;
+    /* 2. Section Card */
+    .section-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 22px 18px;
+      box-shadow: var(--glow-shadow);
+      border: 1.5px solid var(--border-pink);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 16px;
       font-weight: 700;
-      color: var(--text-dark);
-      margin: 22px 0 12px 2px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: var(--deep-pink);
+      margin-bottom: 16px;
+      text-align: center;
+      letter-spacing: 0.3px;
     }
 
-    .highlights-row {
+    .highlights-container {
       display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: none;
+      justify-content: center;
+      gap: 20px;
+      padding: 6px 4px 10px;
     }
-    .highlights-row::-webkit-scrollbar { display: none; }
 
-    .hl-item {
+    .highlight-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
       cursor: pointer;
-      flex-shrink: 0;
     }
 
-    .hl-ring {
-      width: 68px;
-      height: 68px;
+    .highlight-ring {
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
-      padding: 2.5px;
-      background: linear-gradient(135deg, #ffd1df, var(--pink-accent));
-      box-shadow: 0 4px 12px var(--pink-glow);
+      padding: 3px;
+      background: linear-gradient(135deg, #ffc2d1, var(--deep-pink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(251, 111, 146, 0.25);
+      transition: transform 0.2s;
     }
 
-    .hl-ring img {
+    .highlight-ring:active { transform: scale(0.96); }
+
+    .highlight-thumb {
       width: 100%;
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #fff;
+      border: 2.5px solid #fff;
+      background: #fff;
     }
 
-    .hl-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      max-width: 70px;
+    .highlight-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 8px;
+      text-align: center;
+      max-width: 90px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* Review Tab */
-    .review-form-card {
-      background: var(--card-white);
-      border: 1.5px solid var(--pink-border);
-      border-radius: 24px;
-      padding: 20px 16px;
-      text-align: center;
-      box-shadow: 0 8px 24px var(--pink-glow);
+    /* 3. Reviews List */
+    .reviews-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-bottom: 20px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
-    .clean-input {
-      width: 100%;
-      border: 1px solid var(--pink-border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      font-size: 13px;
-      color: var(--text-dark);
-      outline: none;
+    .review-bubble {
       background: #ffffff;
+      border-radius: 20px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-pink);
+      box-shadow: 0 4px 12px rgba(251, 111, 146, 0.08);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .review-stars {
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .review-desc {
+      font-size: 13px;
+      color: #635355;
+      margin-top: 6px;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    .review-time {
+      font-size: 10.5px;
+      color: #b5a9ab;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .form-group {
       margin-bottom: 12px;
     }
 
-    .stars-selector {
+    .input-field, .textarea-field {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border-pink);
+      border-radius: 18px;
+      font-size: 13.5px;
+      background: #fff;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .star-select-box {
       display: flex;
       justify-content: center;
       gap: 8px;
@@ -282,165 +268,56 @@
     .star-btn {
       background: none;
       border: none;
-      font-size: 24px;
-      color: #ffd4e2;
+      font-size: 26px;
       cursor: pointer;
-      transition: transform 0.15s;
+      opacity: 0.3;
+      transition: transform 0.15s, opacity 0.15s;
     }
 
     .star-btn.active {
-      color: var(--star-color);
+      opacity: 1;
       transform: scale(1.15);
     }
 
-    .clean-textarea {
+    .submit-btn {
       width: 100%;
-      border: 1px solid var(--pink-border);
-      border-radius: 16px;
-      padding: 12px 14px;
-      font-size: 13px;
-      color: var(--text-dark);
-      outline: none;
-      background: #ffffff;
-      min-height: 80px;
-      resize: vertical;
-      margin-bottom: 16px;
-    }
-
-    .pink-pill-btn {
-      width: 100%;
-      background: linear-gradient(135deg, #f8a5c2, var(--pink-strong));
-      color: #ffffff;
+      background: linear-gradient(135deg, #ffc2d1, var(--deep-pink));
+      color: #fff;
       border: none;
-      border-radius: 20px;
       padding: 12px;
-      font-size: 14px;
+      border-radius: 20px;
+      font-size: 14.5px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(236, 64, 122, 0.3);
+      box-shadow: 0 6px 16px rgba(251, 111, 146, 0.3);
     }
 
-    .review-bubble {
-      background: #ffffff;
-      border: 1px solid var(--pink-border);
-      border-radius: 18px;
-      padding: 14px 16px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
-      margin-bottom: 10px;
-    }
-
-    .review-bubble-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .review-cust-name {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .review-stars-display {
-      color: var(--star-color);
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    .review-cust-msg {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Contact Tab */
-    .contact-card-box {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .contact-bubble-link {
-      background: #ffffff;
-      border: 1px solid var(--pink-border);
-      border-radius: 20px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      color: var(--text-dark);
-      box-shadow: 0 4px 14px var(--pink-glow);
-    }
-
-    .contact-bubble-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .contact-circle-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #fff0f5;
-      border: 1px solid var(--pink-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-
-    /* Details Tab */
-    .details-white-card {
-      background: #ffffff;
-      border: 1.5px solid var(--pink-border);
-      border-radius: 22px;
-      padding: 18px 16px;
-      box-shadow: 0 6px 20px var(--pink-glow);
-      line-height: 1.8;
-      font-size: 13px;
-      color: var(--text-muted);
-      white-space: pre-line;
-      margin-bottom: 14px;
-    }
-
-    .thanks-bubble {
-      background: #ffffff;
-      border: 1px solid var(--pink-border);
-      border-radius: 20px;
-      padding: 14px 16px;
+    .footer-note {
       text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--pink-strong);
-      box-shadow: 0 4px 14px var(--pink-glow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      line-height: 1.5;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 24px;
     }
 
-    /* Story Fullscreen Viewer */
+    /* Story Viewer Fullscreen */
     .story-modal {
+      display: none;
       position: fixed;
       inset: 0;
-      background: #000000;
-      z-index: 9999999;
-      display: none;
+      background: #000;
+      z-index: 999999;
       flex-direction: column;
       justify-content: space-between;
     }
-    .story-modal.show { display: flex; }
+    .story-modal.active { display: flex; }
 
     .story-bars {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
       display: flex;
-      gap: 4px;
-      padding: 12px 14px 6px;
+      gap: 5px;
       z-index: 10;
     }
 
@@ -448,39 +325,53 @@
       flex: 1;
       height: 3px;
       background: rgba(255, 255, 255, 0.35);
-      border-radius: 2px;
+      border-radius: 4px;
       overflow: hidden;
     }
 
     .story-bar-fill {
-      width: 0%;
       height: 100%;
-      background: #ffffff;
+      width: 0%;
+      background: #fff;
       transition: width 0.1s linear;
     }
 
     .story-header {
+      position: absolute;
+      top: 26px;
+      left: 16px;
+      right: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 14px;
       z-index: 10;
       color: #fff;
     }
 
-    .story-body {
-      flex: 1;
+    .story-close-btn {
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .story-image-container {
+      width: 100%;
+      height: 100%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      background: #000;
       overflow: hidden;
       touch-action: manipulation;
     }
 
-    .story-body img {
+    .story-image {
       width: 100%;
       height: 100%;
       max-height: 92vh;
@@ -491,7 +382,7 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    .story-nav-btn {
+    .story-tap-left, .story-tap-right {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -501,132 +392,88 @@
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
     }
-    .story-nav-left { left: 0; }
-    .story-nav-right { right: 0; }
+    .story-tap-left { left: 0; }
+    .story-tap-right { right: 0; }
   </style>
 </head>
 <body>
 
+  <div class="floating-layer" id="emojiContainer"></div>
   <audio id="bgMusic" loop preload="auto" src=""></audio>
-  <div class="floating-layer" id="floatingLayer"></div>
 
   <div class="container">
-    <!-- แถบนำทาง -->
-    <div class="top-nav">
-      <div class="nav-tabs">
-        <button type="button" class="tab-btn active" onclick="switchNavTab('home')">Home</button>
-        <button type="button" class="tab-btn" onclick="switchNavTab('review')">Review</button>
-        <button type="button" class="tab-btn" onclick="switchNavTab('contact')">Contact</button>
-        <button type="button" class="tab-btn" onclick="switchNavTab('details')">Details</button>
-      </div>
-      <button type="button" class="music-btn" onclick="toggleAudio()">🎵</button>
+    
+    <!-- 1. กล่องโปรไฟล์ -->
+    <div class="header-card">
+      <img id="mainBanner" src="https://i.postimg.cc/26YfhPc1/CA378830-D049-4F10-B91D-83E369F619D9.gif" alt="Banner" class="banner-img">
+      <img id="mainProfile" src="https://i.ibb.co/gZg1bdv9/IMG-3203.jpg" alt="Profile" class="profile-img">
+      
+      <h1 class="store-name" id="mainStoreName">liho ♡</h1>
+      <p class="store-bio" id="mainStoreBio">ยินดีต้อนรับเข้าสู่ร้าน liho ♡
+สามารถกดดูไฮไลท์ที่เราลงไว้เพื่อดูตัวอย่างได้เลย ขอบคุณที่กดเข้ามานะคะ</p>
     </div>
 
-    <!-- 1. Home -->
-    <div class="tab-content active" id="tab-home">
-      <div class="banner-float-box">
-        <img id="mainBanner" src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=800&auto=format&fit=crop" alt="Banner">
+    <!-- 2. กล่องไฮไลท์ 3 รายการ -->
+    <div class="section-card">
+      <div class="section-title">✨ highlights♡ (3 รายการ)</div>
+      <div class="highlights-container" id="highlightsList"></div>
+    </div>
+
+    <!-- 3. กล่องรีวิว -->
+    <div class="section-card">
+      <div class="section-title">💌 review Liho ♡</div>
+      
+      <div class="reviews-list" id="reviewsContainer">
+        <p style="text-align: center; color: var(--text-muted); font-size: 13px;">กำลังโหลดรีวิว...</p>
       </div>
-      <div class="profile-center-wrap">
-        <div class="profile-circle-wrap">
-          <img id="mainProfile" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Profile">
+
+      <div style="border-top: 1.5px dashed var(--border-pink); padding-top: 16px;">
+        <div class="star-select-box">
+          <button type="button" class="star-btn active" onclick="setStars(1)">⭐️</button>
+          <button type="button" class="star-btn active" onclick="setStars(2)">⭐️</button>
+          <button type="button" class="star-btn active" onclick="setStars(3)">⭐️</button>
+          <button type="button" class="star-btn active" onclick="setStars(4)">⭐️</button>
+          <button type="button" class="star-btn active" onclick="setStars(5)">⭐️</button>
         </div>
-      </div>
-      <h1 class="store-title" id="storeNameText">SeaSea Shop ♡</h1>
-      <div class="bio-dashed-box" id="bioBoxText">ยินดีต้อนรับสู่ร้านค้าของเราค่ะ ♡
-เลือกดูไฮไลท์และบริการต่างๆ ได้เลยนะคะ</div>
 
-      <div class="review-header-label">
-        <span>✨</span> <span>Highlights</span>
-      </div>
-      <div class="highlights-row" id="highlightsBar"></div>
-    </div>
-
-    <!-- 2. Review -->
-    <div class="tab-content" id="tab-review">
-      <div class="review-form-card">
-        <div style="font-weight:700; color:var(--pink-strong); margin-bottom:12px;">เขียนรีวิวให้ร้านค้า ♡</div>
-        <input type="text" id="custNameInput" class="clean-input" placeholder="ชื่อของคุณ ♡">
-        <div class="stars-selector">
-          <button type="button" class="star-btn active" onclick="selectStar(1)">★</button>
-          <button type="button" class="star-btn active" onclick="selectStar(2)">★</button>
-          <button type="button" class="star-btn active" onclick="selectStar(3)">★</button>
-          <button type="button" class="star-btn active" onclick="selectStar(4)">★</button>
-          <button type="button" class="star-btn active" onclick="selectStar(5)">★</button>
+        <div class="form-group">
+          <input type="text" class="input-field" id="customerName" placeholder="สามารถกรอกชื่อตัวเองได้เลยนะคะ">
         </div>
-        <textarea id="custMsgInput" class="clean-textarea" placeholder="บอกความประทับใจได้เลยนะคะ..."></textarea>
-        <button type="button" class="pink-pill-btn" id="sendReviewBtn" onclick="submitReview()">ส่งรีวิว ♡</button>
-      </div>
 
-      <div class="review-header-label">
-        <span>💬</span> <span>รีวิวจากลูกค้า</span>
-      </div>
-      <div id="feedbackFeed"></div>
-    </div>
-
-    <!-- 3. Contact -->
-    <div class="tab-content" id="tab-contact">
-      <div class="bio-dashed-box" style="margin-top:0;">
-        <div style="font-weight:600; color:var(--text-dark); margin-bottom:4px;">Contact Us ♡</div>
-        ติดต่อสอบถามหรือสั่งซื้อสินค้าได้ตลอด 24 ชม. ค่ะ
-      </div>
-      <div class="contact-card-box">
-        <a id="lineLink" href="#" target="_blank" class="contact-bubble-link">
-          <div class="contact-bubble-left">
-            <div class="contact-circle-icon">💬</div>
-            <div>
-              <div style="font-weight:700; font-size:14px;">LINE Official</div>
-              <div id="lineText" style="font-size:12px; color:var(--text-muted);">ติดต่อสอบถาม - สั่งซื้อ</div>
-            </div>
-          </div>
-          <span style="color:var(--pink-strong);">♡</span>
-        </a>
-        <a id="igLink" href="#" target="_blank" class="contact-bubble-link">
-          <div class="contact-bubble-left">
-            <div class="contact-circle-icon">📷</div>
-            <div>
-              <div style="font-weight:700; font-size:14px;">Instagram</div>
-              <div id="igText" style="font-size:12px; color:var(--text-muted);">ติดตามอัปเดตใหม่ๆ</div>
-            </div>
-          </div>
-          <span style="color:var(--pink-strong);">♡</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- 4. Details -->
-    <div class="tab-content" id="tab-details">
-      <div class="details-white-card">
-        <div style="font-weight:700; color:var(--pink-strong); margin-bottom:8px;" id="detailsTitle">กฎและรายละเอียดการให้บริการ ♡</div>
-        <div id="detailsContentText">
-♡ เปิดทำการทุกวัน สอบถามทิ้งไว้ได้เลยค่ะ
-♡ รอตอบกลับภายใน 5 - 10 นาที
-♡ รับชำระผ่านธนาคาร และ TrueMoney Wallet
+        <div class="form-group">
+          <textarea class="textarea-field" id="customerFeedback" rows="3" placeholder="รีวิวร้านเค้าได้ตามความรู้สึกเลยนะคะ ♡"></textarea>
         </div>
-      </div>
-      <div class="thanks-bubble">
-        <div>♡ ขอบคุณทุกท่านที่แวะมาอุดหนุนนะคะ ♡</div>
-        <div>♡ ยินดีให้บริการด้วยความเต็มใจเสมอค่ะ ♡</div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="sendReview()">ส่งรีวิว ♡</button>
       </div>
     </div>
+
+    <div class="footer-note" id="footerNote">thank u for supporting liho ♡</div>
   </div>
 
-  <!-- Story Viewer Modal -->
+  <!-- Story Modal -->
   <div class="story-modal" id="storyModal">
     <div class="story-bars" id="storyBars"></div>
+    
     <div class="story-header">
-      <span id="storyTitleText" style="font-weight:600; font-size:14px;">Highlight</span>
-      <button style="background:none; border:none; color:#fff; font-size:24px; cursor:pointer;" onclick="closeStoryModal()">✕</button>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span id="storyHeaderName" style="font-size:14px; font-weight:700;">Highlight</span>
+      </div>
+      <button class="story-close-btn" onclick="closeStory()">✕</button>
     </div>
-    <div class="story-body">
-      <div class="story-nav-btn story-nav-left" id="storyNavLeft"></div>
-      <img id="storyActiveImg" src="" alt="Story" draggable="false">
-      <div class="story-nav-btn story-nav-right" id="storyNavRight"></div>
+
+    <div class="story-image-container">
+      <img id="storyImage" class="story-image" src="" alt="Story">
+      <div class="story-tap-left" id="storyTapLeft"></div>
+      <div class="story-tap-right" id="storyTapRight"></div>
     </div>
   </div>
 
   <script>
-    // ฐานข้อมูลแยกอิสระเฉพาะโปรเจกต์ใหม่ ไม่ปะปนกับของเดิม
+    // คอลเลกชันใหม่แยกอิสระ 100%
+    const DB_SITE = "seasea_single_site";
+    const DB_REVIEWS = "seasea_single_reviews";
+
     const firebaseConfig = {
       apiKey: "AIzaSyCpAGDSy1NRgmLV_g7qJrCpwOhU9MrfQyY",
       authDomain: "benefitie.firebaseapp.com",
@@ -639,21 +486,12 @@
     if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    const DB_COLLECTION = "seasea_site_data";
-    const DB_REVIEWS = "seasea_site_reviews";
-
-    const audio = document.getElementById('bgMusic');
+    const music = document.getElementById('bgMusic');
     let audioContext;
     function unlockAudio() {
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioContext.state === 'suspended') {
-        audioContext.resume();
-      }
-      if (audio.paused && audio.src) {
-        audio.play().catch(() => {});
-      }
+      if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioContext.state === 'suspended') audioContext.resume();
+      if (music.paused && music.src) music.play().catch(() => {});
     }
     window.addEventListener('load', unlockAudio);
     ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(e => {
@@ -663,138 +501,119 @@
       }, { passive: true });
     });
 
-    function toggleAudio() {
-      if (audio.paused) audio.play().catch(() => {});
-      else audio.pause();
-    }
-
-    function switchNavTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      document.getElementById(`tab-${tabId}`).classList.add('active');
-    }
-
-    let highlightsData = [
-      { title: "Story 1", cover: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=400&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=800&auto=format&fit=crop"] },
-      { title: "Story 2", cover: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"] }
+    let currentHighlights = [
+      { title: "face 💕", cover: "https://i.ibb.co/gZg1bdv9/IMG-3203.jpg", stories: [] },
+      { title: "Review 2", cover: "https://i.ibb.co/gZg1bdv9/IMG-3203.jpg", stories: [] },
+      { title: "Review 3", cover: "https://i.ibb.co/gZg1bdv9/IMG-3203.jpg", stories: [] }
     ];
 
-    // โหลดข้อมูลร้านแบบเรียลไทม์
-    db.collection(DB_COLLECTION).doc("main_config").onSnapshot(doc => {
+    function renderHighlights() {
+      const container = document.getElementById('highlightsList');
+      container.innerHTML = '';
+      currentHighlights.forEach((hl, index) => {
+        const item = document.createElement('div');
+        item.className = 'highlight-item';
+        item.onclick = () => openStory(index);
+        item.innerHTML = `
+          <div class="highlight-ring">
+            <img src="${hl.cover || 'https://i.ibb.co/gZg1bdv9/IMG-3203.jpg'}" class="highlight-thumb" alt="${hl.title}">
+          </div>
+          <div class="highlight-label">${hl.title || 'Highlight'}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    db.collection(DB_SITE).doc("content").onSnapshot(doc => {
       if (doc.exists) {
-        const d = doc.data();
-        if (d.siteTitle) document.getElementById('pageTitle').textContent = d.siteTitle;
-        if (d.storeName) document.getElementById('storeNameText').textContent = d.storeName;
-        if (d.storeBio) document.getElementById('bioBoxText').textContent = d.storeBio;
-        if (d.bannerImg) document.getElementById('mainBanner').src = d.bannerImg;
-        if (d.profileImg) document.getElementById('mainProfile').src = d.profileImg;
-        if (d.details) document.getElementById('detailsContentText').textContent = d.details;
-        if (d.lineUrl) document.getElementById('lineLink').href = d.lineUrl;
-        if (d.igUrl) document.getElementById('igLink').href = d.igUrl;
-        if (d.musicUrl && audio.src !== d.musicUrl) {
-          audio.src = d.musicUrl;
+        const data = doc.data();
+        if (data.banner) document.getElementById('mainBanner').src = data.banner;
+        if (data.profile) document.getElementById('mainProfile').src = data.profile;
+        if (data.storeName) document.getElementById('mainStoreName').textContent = data.storeName;
+        if (data.storeBio) document.getElementById('mainStoreBio').textContent = data.storeBio;
+        if (data.musicUrl && music.src !== data.musicUrl) {
+          music.src = data.musicUrl;
           unlockAudio();
         }
-        if (d.highlights && Array.isArray(d.highlights) && d.highlights.length) {
-          highlightsData = d.highlights;
-          renderHighlights(d.highlights);
+        if (data.highlights && Array.isArray(data.highlights)) {
+          currentHighlights = data.highlights;
+          renderHighlights();
         }
       } else {
-        renderHighlights(highlightsData);
+        renderHighlights();
       }
     });
 
-    function renderHighlights(hl) {
-      const bar = document.getElementById('highlightsBar');
-      bar.innerHTML = '';
-      hl.forEach((item, idx) => {
-        const cover = item.cover || (item.images && item.images[0]) || "";
-        const div = document.createElement('div');
-        div.className = 'hl-item';
-        div.onclick = () => openStory(idx);
-        div.innerHTML = `
-          <div class="hl-ring"><img src="${cover}" alt="HL"></div>
-          <div class="hl-label">${item.title || 'Highlight'}</div>
-        `;
-        bar.appendChild(div);
-      });
-    }
+    // Story System คมชัด + แตะเปลี่ยนได้ทันที
+    let activeHlIndex = 0;
+    let activeStoryIndex = 0;
+    let storyTimer = null;
 
-    // ระบบสตอรี่ Full Screen คมชัด แตะข้ามได้ทันที
-    let activeHlIdx = 0;
-    let activeSlideIdx = 0;
-    let slideTimer = null;
-
-    function openStory(idx) {
-      activeHlIdx = idx;
-      activeSlideIdx = 0;
-      const hl = highlightsData[idx];
-      if (!hl || !hl.images || !hl.images.length) {
-        alert("ยังไม่มีรูปในไฮไลท์นี้ค่ะ ♡");
+    function openStory(hlIndex) {
+      activeHlIndex = hlIndex;
+      activeStoryIndex = 0;
+      const hl = currentHighlights[hlIndex];
+      if (!hl.stories || hl.stories.length === 0) {
+        alert('ไฮไลท์นี้ยังไม่มีรูปสตอรี่ค่ะ ♡');
         return;
       }
-      document.getElementById('storyTitleText').textContent = hl.title || 'Highlight';
-      buildStoryBars();
-      showStorySlide();
-      document.getElementById('storyModal').classList.add('show');
-    }
+      document.getElementById('storyHeaderName').textContent = hl.title || 'Highlight';
 
-    function buildStoryBars() {
-      const hl = highlightsData[activeHlIdx];
-      const bars = document.getElementById('storyBars');
-      bars.innerHTML = '';
-      hl.images.forEach((_, i) => {
-        const bar = document.createElement('div');
-        bar.className = 'story-bar';
-        bar.innerHTML = `<div class="story-bar-fill" id="sb-${i}"></div>`;
-        bars.appendChild(bar);
+      const barsBox = document.getElementById('storyBars');
+      barsBox.innerHTML = '';
+      hl.stories.forEach((_, idx) => {
+        const b = document.createElement('div');
+        b.className = 'story-bar';
+        b.innerHTML = `<div class="story-bar-fill" id="storyBar_${idx}"></div>`;
+        barsBox.appendChild(b);
       });
+
+      document.getElementById('storyModal').classList.add('active');
+      showStorySlide();
     }
 
     function showStorySlide() {
-      clearTimeout(slideTimer);
-      const hl = highlightsData[activeHlIdx];
-      document.getElementById('storyActiveImg').src = hl.images[activeSlideIdx];
+      clearTimeout(storyTimer);
+      const hl = currentHighlights[activeHlIndex];
+      document.getElementById('storyImage').src = hl.stories[activeStoryIndex];
 
-      hl.images.forEach((_, i) => {
-        const fill = document.getElementById(`sb-${i}`);
-        if (!fill) return;
-        if (i < activeSlideIdx) fill.style.width = '100%';
-        else if (i === activeSlideIdx) {
-          fill.style.width = '0%';
-          setTimeout(() => { fill.style.width = '100%'; }, 50);
-        } else fill.style.width = '0%';
+      hl.stories.forEach((_, i) => {
+        const barFill = document.getElementById(`storyBar_${i}`);
+        if (!barFill) return;
+        if (i < activeStoryIndex) barFill.style.width = '100%';
+        else if (i === activeStoryIndex) {
+          barFill.style.width = '0%';
+          setTimeout(() => { barFill.style.width = '100%'; }, 50);
+        } else barFill.style.width = '0%';
       });
 
-      slideTimer = setTimeout(() => { nextStorySlide(); }, 5000);
+      storyTimer = setTimeout(nextStoryImage, 4500);
     }
 
-    function nextStorySlide() {
-      clearTimeout(slideTimer);
-      const hl = highlightsData[activeHlIdx];
-      if (activeSlideIdx < hl.images.length - 1) {
-        activeSlideIdx++;
+    function nextStoryImage() {
+      clearTimeout(storyTimer);
+      const hl = currentHighlights[activeHlIndex];
+      if (activeStoryIndex < hl.stories.length - 1) {
+        activeStoryIndex++;
         showStorySlide();
       } else {
-        closeStoryModal();
+        closeStory();
       }
     }
 
-    function prevStorySlide() {
-      clearTimeout(slideTimer);
-      if (activeSlideIdx > 0) {
-        activeSlideIdx--;
+    function prevStoryImage() {
+      clearTimeout(storyTimer);
+      if (activeStoryIndex > 0) {
+        activeStoryIndex--;
         showStorySlide();
       }
     }
 
-    function closeStoryModal() {
-      clearTimeout(slideTimer);
-      document.getElementById('storyModal').classList.remove('show');
+    function closeStory() {
+      clearTimeout(storyTimer);
+      document.getElementById('storyModal').classList.remove('active');
     }
 
-    // ผูกระบบแตะแบบ Ultra Responsive
     function bindTap(el, cb) {
       if (!el) return;
       let sx = 0, sy = 0, st = 0;
@@ -806,80 +625,88 @@
         }
       });
     }
-    bindTap(document.getElementById('storyNavRight'), nextStorySlide);
-    bindTap(document.getElementById('storyNavLeft'), prevStorySlide);
+    bindTap(document.getElementById('storyTapRight'), nextStoryImage);
+    bindTap(document.getElementById('storyTapLeft'), prevStoryImage);
 
-    // รีวิว
+    // Reviews
     let currentRating = 5;
-    function selectStar(num) {
-      currentRating = num;
-      document.querySelectorAll('.star-btn').forEach((b, i) => {
-        if (i < num) b.classList.add('active');
-        else b.classList.remove('active');
+    function setStars(star) {
+      currentRating = star;
+      document.querySelectorAll('.star-btn').forEach((btn, idx) => {
+        if (idx < star) btn.classList.add('active');
+        else btn.classList.remove('active');
       });
     }
 
-    async function submitReview() {
-      const name = document.getElementById('custNameInput').value.trim();
-      const msg = document.getElementById('custMsgInput').value.trim();
-      const btn = document.getElementById('sendReviewBtn');
-      if (!name || !msg) {
-        alert("กรุณากรอกชื่อและข้อความด้วยนะคะ ♡");
+    db.collection(DB_REVIEWS).orderBy("createdAt", "desc").onSnapshot(snapshot => {
+      const container = document.getElementById('reviewsContainer');
+      if (snapshot.empty) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); font-size: 13px;">ยังไม่มีรีวิว มารีวิวเป็นคนแรกได้เลยนะคะ 🤍</p>';
         return;
       }
+      let html = '';
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        html += `
+          <div class="review-bubble">
+            <div class="review-header">
+              <span class="review-name">${data.name}</span>
+              <span class="review-stars">${'⭐️'.repeat(data.stars || 5)}</span>
+            </div>
+            <div class="review-desc">${data.feedback}</div>
+            <div class="review-time">${data.dateStr || 'เมื่อเร็วๆ นี้'}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    });
+
+    async function sendReview() {
+      const nameInput = document.getElementById('customerName');
+      const feedbackInput = document.getElementById('customerFeedback');
+      const btn = document.getElementById('submitBtn');
+      const name = nameInput.value.trim();
+      const feedback = feedbackInput.value.trim();
+
+      if (!name || !feedback) {
+        alert('กรุณากรอกชื่อและข้อความรีวิวก่อนส่งนะคะ ♡');
+        return;
+      }
+
       btn.disabled = true;
       try {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
         await db.collection(DB_REVIEWS).add({
           name: name,
-          msg: msg,
           stars: currentRating,
+          feedback: feedback,
+          dateStr: dateStr,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
-        document.getElementById('custNameInput').value = '';
-        document.getElementById('custMsgInput').value = '';
-        selectStar(5);
-        alert("ขอบคุณสำหรับรีวิวนะคะ ♡");
-      } catch (e) {
-        alert("ส่งรีวิวไม่สำเร็จ กรุณาลองใหม่ค่ะ");
+        nameInput.value = '';
+        feedbackInput.value = '';
+        setStars(5);
+        alert('ขอบคุณสำหรับรีวิวนะคะ ♡');
+      } catch (err) {
+        alert('ส่งรีวิวไม่สำเร็จ ลองใหม่อีกครั้งนะคะ');
       } finally {
         btn.disabled = false;
       }
     }
 
-    db.collection(DB_REVIEWS).orderBy("createdAt", "desc").onSnapshot(snap => {
-      const box = document.getElementById('feedbackFeed');
-      box.innerHTML = '';
-      if (snap.empty) {
-        box.innerHTML = '<p style="text-align:center; font-size:12px; color:var(--text-muted); padding:10px;">ยังไม่มีรีวิว มารีวิวเป็นคนแรกได้เลยนะคะ ♡</p>';
-        return;
-      }
-      snap.forEach(doc => {
-        const d = doc.data();
-        const div = document.createElement('div');
-        div.className = 'review-bubble';
-        div.innerHTML = `
-          <div class="review-bubble-head">
-            <span class="review-cust-name">${d.name}</span>
-            <span class="review-stars-display">${'★'.repeat(d.stars || 5)}</span>
-          </div>
-          <div class="review-cust-msg">${d.msg}</div>
-        `;
-        box.appendChild(div);
-      });
-    });
-
-    // ไอคอนลอยฟรุ้งฟริ้ง
-    const icons = ['🌸', '🤍', '☁️', '✨'];
-    const floatBox = document.getElementById('floatingLayer');
+    // Emoji Float
+    const icons = ['🩹', '☁️', '🐰', '🤍', '👼🏻'];
+    const emojiBox = document.getElementById('emojiContainer');
     setInterval(() => {
       const el = document.createElement('div');
       el.className = 'float-item';
       el.textContent = icons[Math.floor(Math.random() * icons.length)];
       el.style.left = Math.random() * 92 + 'vw';
       el.style.animationDuration = (8 + Math.random() * 5) + 's';
-      floatBox.appendChild(el);
+      emojiBox.appendChild(el);
       setTimeout(() => el.remove(), 14000);
-    }, 1400);
+    }, 1200);
   </script>
 </body>
 </html>
